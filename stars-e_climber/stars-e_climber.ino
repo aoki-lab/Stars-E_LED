@@ -1,6 +1,6 @@
 #include <Adafruit_NeoPixel.h>
 #define MAX_VAL 255  // 0 to 255 for brightness
-#define DELAY_TIME 10
+#define DELAY_TIME 50
 #define DELAY_TIME2 10
 #define HIGH 1
 #define LOW 0
