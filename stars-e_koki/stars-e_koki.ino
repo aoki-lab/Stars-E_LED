@@ -1,6 +1,6 @@
 #include <Adafruit_NeoPixel.h>
 #define MAX_VAL 255  // 0 to 255 for brightness
-#define DELAY_TIME 50
+#define DELAY_TIME 10
 #define DELAY_TIME2 10
 #define HIGH 1
 #define LOW 0
@@ -26,13 +26,13 @@ void loop() {
     switch ( inputchar ) {
       case 's':
         Serial.print("pattern S\n");
-          delay(4000);
+        delay(4000);
           R = 0;
           B = 255 ;
           G = 0;
-          analogWrite(3,R) ;               // 　９番ピンから赤LEDの出力
-          analogWrite(5,G) ;               // １１番ピンから緑LEDの出力
-          analogWrite(6,B) ;               // １０番ピンから青LEDの出力
+          analogWrite(3,R) ;               // 3番ピンから赤LEDの出力
+          analogWrite(5,G) ;               // 5番ピンから緑LEDの出力
+          analogWrite(6,B) ;               // 6番ピンから青LEDの出力
         for(int i = 0; i < 2; i++) {
           colorWipe(pixels.Color(0, 0, MAX_VAL), 1); // Blue
           colorWipe(pixels.Color(0, 0, MAX_VAL), 1); // Blue
@@ -55,7 +55,7 @@ void loop() {
 
       case 'd':
         Serial.print("pattern D\n");
-          delay(4000);
+        delay(4000);
           R = 0;
           B = 0 ;
           G = 255;
@@ -84,7 +84,7 @@ void loop() {
 
       case 'b':
         Serial.print("pattern B\n");
-          delay(4000);
+        delay(4000);
           R = 255;
           B = 0;
           G = 0;
@@ -113,7 +113,7 @@ void loop() {
 
       case 'i':
         Serial.print("pattern I\n");
-          delay(4000);
+        delay(4000);
           R = 255;
           B = 255;
           G = 255;
@@ -141,30 +141,33 @@ void loop() {
       break;
 
       case 'e':
+        delay(4000);
         Serial.print("pattern E\n");
         rainbowCycle(DELAY_TIME2);
       break;
   
       case 'f':
         Serial.print("pattern F\n");
+        delay(4000);
         for(int i = 0; i< NUMPIXELS; i++) {
           pixels.clear();
           pixels.setPixelColor(i, pixels.Color(0,255,0));
-          pixels.setPixelColor(25-i, pixels.Color(0,0,255));
-          if(i < 25) {
-            pixels.setPixelColor(25+i, pixels.Color(255,0,0));
+          pixels.setPixelColor(16-i, pixels.Color(0,0,255));
+          if(i < 16) {
+            pixels.setPixelColor(16+i, pixels.Color(255,0,0));
           } else {
-            pixels.setPixelColor(i-25, pixels.Color(255,0,0));
+            pixels.setPixelColor(i-16, pixels.Color(255,0,0));
           }
           pixels.show();
           delay(300);
         }
       } 
-  
+      
      Serial.print("Ready\n");
   } else {
         for(int i = 0; i< NUMPIXELS; i++) {
           pixels.clear();
+          pixels.setPixelColor(i, pixels.Color(MAX_VAL,MAX_VAL,MAX_VAL));
           pixels.setPixelColor(i, pixels.Color(MAX_VAL,MAX_VAL,MAX_VAL));
           pixels.show();
           delay(30);
